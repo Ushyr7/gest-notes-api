@@ -19,9 +19,9 @@ const query_getMod = "SELECT * from mod_vw;";
 const query_getEnsgmt ="SELECT * from enseignement_vw;";
 const query_getEtu = "SELECT * from etu_vw;";
 const query_getEns = "SELECT * from ens_vw;";
-const query_AdminLogin = "select idAdmin, mdpAdmin from admin where idAdmin = ?;";
-const query_getAdminInfo = "select numAdmin, idAdmin from admin where idAdmin = ?";
-const query_getArchive = "select * from archive;"
+const query_AdminLogin = "select idAdmin, mdpAdmin from Admin where idAdmin = ?;";
+const query_getAdminInfo = "select numAdmin, idAdmin from Admin where idAdmin = ?";
+const query_getArchive = "select * from Archive;"
 
 const query_inserEtu = 'call insert_etu(?, ?, ?, ?, ?, ?);';
 const query_inserEns ="call insert_ens(?, ?, ?, ?, ?, ?);";
@@ -52,7 +52,7 @@ const query_updateMod ="call update_modall(?,?,?,?,?)";
 const query_updateEnsgmt="call update_enseignementall(?,?,?,?,?,?,?,?)";
 const query_updateEtu="call update_etuall(?,?,?,?,?)";
 
-const query_getAnnee="select concat(convert(annee,char), '-', convert(annee + 1, char)) as annee, semestre_en_cours, session_en_cours, entre_note_active from annee;";
+const query_getAnnee="select concat(convert(annee,char), '-', convert(annee + 1, char)) as annee, semestre_en_cours, session_en_cours, entre_note_active from Annee;";
 const query_incrAnnee="call incr_annee();";
 const query_incrSemestre="call incr_semestre();";
 const query_incrSession="call incr_session()";
@@ -832,7 +832,7 @@ router.post("/admin", async(req, res) => {
             id: req.body.id, 
             mdp: hashedPasswd, 
         };
-        mysqlConnection.query("insert into admin values(" 
+        mysqlConnection.query("insert into Admin values(" 
         + "'"+ens.num + "'" + "," + "'" + ens.id + "'" + "," 
         + "'" + ens.mdp + "'" + ")", (err, rows, fields)=>{
             if(!err){

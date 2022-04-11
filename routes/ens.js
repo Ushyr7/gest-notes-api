@@ -8,11 +8,11 @@ const router = express.Router();
 const jwt_decode = require('jwt-decode');
 
 //préparation des requêtes
-const query_EnsLogin = "select idEnseignant, mdpEns from enseignant where idEnseignant = ?;";
+const query_EnsLogin = "select idEnseignant, mdpEns from Enseignant where idEnseignant = ?;";
 const query_getEnsInfo = "select * from ens_vw where idEnseignant = ?;";
 const query_getEnsgmt = "select * from enseignement_vw where numEns = ?;"
-const query_getFormaPresi= "select * from formation,departement WHERE formation.idDepartement = departement.idDepartement AND numEns= ?;"
-const query_getEnsgmt_note = "SELECT * FROM etudiant,note where note.numEtu = etudiant.numEtu and note.idEnseignement = ?"
+const query_getFormaPresi= "select * from Formation,Departement WHERE formation.idDepartement = departement.idDepartement AND numEns= ?;"
+const query_getEnsgmt_note = "SELECT * FROM Etudiant,Note where note.numEtu = etudiant.numEtu and note.idEnseignement = ?"
 
 let refreshTokens = [];
 
