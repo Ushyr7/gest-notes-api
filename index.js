@@ -34,9 +34,9 @@ app.use(cors());
 
 app.use(bodyParser.json());
 
-app.use('/api/', etuRoutes);
-app.use('/api/', adminRoutes);
-app.use('/api/', ensRoutes);
+app.use('', etuRoutes);
+app.use('', adminRoutes);
+app.use('', ensRoutes);
 
 
 app.listen(3001, () => console.log('Server started ...'));

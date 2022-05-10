@@ -9,10 +9,10 @@ const jwt_decode = require('jwt-decode');
 const router = express.Router();
 
 //préparation des requetes 
-const query_loginEtu = "select * from etudiant where idEtu = ?;";
+const query_loginEtu = "select * from Etudiant where idEtu = ?;";
 const query_getEtuInfo= "select * from etu_vw where idEtu = ?";
-const query_getForma = "select distinct idForma, nomForma,AnnéeUniv, creditForma from archive where numEtu = ?;";
-const query_getAllInfo = "select idUniversite, nomUniversite, idFac, nomFac, idDep, nomDepartement, idForma, nomForma, creditForma, semestre, idModule, nomModule, creditModule, idEnseignement, nomEnseignement, numEtu, nomEtu, prenomEtu, noteTP, noteCC, noteExam, session, AnnéeUniv from archive where numEtu=? and idForma=?;";
+const query_getForma = "select distinct idForma, nomForma,AnnéeUniv, creditForma from Archive where numEtu = ?;";
+const query_getAllInfo = "select idUniversite, nomUniversite, idFac, nomFac, idDep, nomDepartement, idForma, nomForma, creditForma, semestre, idModule, nomModule, creditModule, idEnseignement, nomEnseignement, numEtu, nomEtu, prenomEtu, noteTP, noteCC, noteExam, session, AnnéeUniv from Archive where numEtu=? and idForma=?;";
 
 let refreshTokens = [];
 
