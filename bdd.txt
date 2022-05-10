@@ -288,8 +288,8 @@ insert into Etudiant(idEtu, mdpEtu, nomEtu, prenomEtu, numEtu, idForma) value (i
 
 
 DROP procedure IF EXISTS insert_ens;
-CREATE PROCEDURE insert_ens (IN id varchar(25), IN mdp varchar(70), IN nom varchar(40), IN prenom varchar(40), IN num varchar(25), IN EstPresidentJury boolean)
-insert into Enseignant(idEnseignant, mdpEns, nomEns, prenomEns, numEns, estPresidentJury) value (id, mdp, nom, prenom, num, estPresidentJury);
+CREATE PROCEDURE insert_ens (IN id varchar(25), IN mdp varchar(70), IN nom varchar(40), IN prenom varchar(40), IN num varchar(25))
+insert into Enseignant(idEnseignant, mdpEns, nomEns, prenomEns, numEns) value (id, mdp, nom, prenom, num);
 
 
 

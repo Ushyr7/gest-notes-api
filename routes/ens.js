@@ -13,6 +13,8 @@ const query_getEnsInfo = "select * from ens_vw where idEnseignant = ?;";
 const query_getEnsgmt = "select * from enseignement_vw where numEns = ?;"
 const query_getFormaPresi= "select * from Formation,Departement WHERE formation.idDepartement = departement.idDepartement AND numEns= ?;"
 const query_getEnsgmt_note = "SELECT * FROM Etudiant,Note where note.numEtu = etudiant.numEtu and note.idEnseignement = ?"
+const query_updateNoteAll = "call update_noteall(?,?,?,?,?);";
+
 
 let refreshTokens = [];
 
@@ -137,7 +139,7 @@ router.post("/ens/forma", authToken, (req, res) => {
 
 });
 
-// plus tard
+//obtenir les notes et les étudiants dans un enseignements avec un num d'enseignement
 router.post("/ens/ensgmt/note", authToken, (req, res) => {
     try{
         mysqlConnection.query(query_getEnsgmt_note,[req.body.id], (err, rows, fields)=>{
@@ -151,6 +153,24 @@ router.post("/ens/ensgmt/note", authToken, (req, res) => {
     } catch {
         res.status(500).send({message: "Erreur"});
     }
+
+    
+//modifier note all selon son l'identifiant de l'etudiant et de l'enseignement
+router.post("/ens/note/all", authToken, (req, res) => {
+    try { 
+        mysqlConnection.query(query_updateNoteAll,
+            [body.TP, req.body.CC, req.body.exam,req.body.num,req.body.numEns], 
+            (err, rows, fields)=>{
+            if(!err){
+                res.status(200).send();
+            } else {
+                res.status(500).send(err);
+            }
+        }); 
+    } catch {
+        res.status(500).send('Erreur');
+    }          
+});
 
 });
 
