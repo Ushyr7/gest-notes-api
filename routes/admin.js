@@ -16,7 +16,7 @@ const query_getForma = "SELECT * from forma_vw;";
 const query_getFormaMod = "SELECT * from Formation;";
 
 const query_getMod = "SELECT * from mod_vw;";
-const query_getEnsgmt ="SELECT * from enseignement_vw;";
+const query_getEnsgmt ="SELECT * from Enseignement_vw;";
 const query_getEtu = "SELECT * from etu_vw;";
 const query_getEns = "SELECT * from ens_vw;";
 const query_AdminLogin = "select idAdmin, mdpAdmin from Admin where idAdmin = ?;";
@@ -30,7 +30,7 @@ const query_inserFac = "call insert_fac(?,?,?);";
 const query_inserDep ="call insert_dep(?,?,?);";
 const query_inserForma = "call insert_form(?,?,?,?,?);"
 const query_inserMod = "call insert_mod(?,?,?,?,?);";
-const query_inserEnsgmt = "call insert_enseignement(?,?,?,?,?,?,?,?)";
+const query_inserEnsgmt = "call insert_enseignement(?,?,?,?,?,?,?)";
 const query_inserArchive = "call insert_archive()";
 
 const query_delUniv= "call delete_univ(?);";
@@ -49,7 +49,7 @@ const query_updateDep = "call update_depall(?,?,?)";
 const query_updateEns ="call update_ensall(?,?,?,?)";
 const query_updateForm ="call update_formall(?,?,?,?,?)";
 const query_updateMod ="call update_modall(?,?,?,?,?)";
-const query_updateEnsgmt="call update_enseignementall(?,?,?,?,?,?,?,?)";
+const query_updateEnsgmt="call update_enseignementall(?,?,?,?,?,?,?)";
 const query_updateEtu="call update_etuall(?,?,?,?,?)";
 
 const query_getAnnee="select concat(convert(annee,char), '-', convert(annee + 1, char)) as annee, semestre_en_cours, session_en_cours, entre_note_active from Annee;";
@@ -352,7 +352,7 @@ router.post("/mod", authToken, (req, res) => {
 router.post("/ensgmt", authToken, (req, res) => {
     try { 
         mysqlConnection.query(query_inserEnsgmt, 
-            [req.body.id, req.body.idMod, req.body.numEns, req.body.nom, req.body.tp, req.body.cc1, req.body.cc2, req.body.exam],
+            [req.body.id, req.body.idMod, req.body.numEns, req.body.nom, req.body.tp, req.body.cc, req.body.exam],
             (err, rows, fields)=>{
             if(!err){
                 res.status(201).send();;
@@ -789,7 +789,7 @@ router.put("/mod", authToken, (req, res) => {
 router.put("/ensgmt", authToken, (req, res) => {
     try { 
         mysqlConnection.query(query_updateEnsgmt,
-            [req.body.id, req.body.id, req.body.num, req.body.idMod, req.body.nom, req.body.coeffTP, req.body.coeffCC1, req.body.coeffCC2, req.body.coeffExam], 
+            [req.body.id, req.body.id, req.body.num, req.body.idMod, req.body.nom, req.body.coeffTP, req.body.coeffCC, req.body.coeffExam], 
             (err, rows, fields)=>{
             if(!err){
                 res.status(200).send();;
